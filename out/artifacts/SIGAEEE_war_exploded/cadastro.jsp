@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: cicatriz
+  Date: 9/11/18
+  Time: 2:17 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -6,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">"
-    <title>SIGAEE - Login</title>
+    <title>SIGAEE- Cadastro</title>
 </head>
 <body id="page-top">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -20,13 +27,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.jsp">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cadastro.jsp">Cadastro</a>
-                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="login.jsp">Login
+                    <a class="nav-link" href="cadastro.jsp">Cadastro
                         <span class="sr-only">(current)</span>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.jsp">Login</a>
                 </li>
             </ul>
         </div>
@@ -34,20 +41,30 @@
 </nav>
 <section class="py-5">
     <div class="container">
-        <h1>Login</h1>
+        <h1>Cadastro</h1>
         <form>
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome" placeholder="Insira seu nome">
             </div>
             <div class="form-group">
-                <label for="pwd">Senha:</label>
-                <input type="password" class="form-control" id="pwd">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="exemplo@email.com">
             </div>
-            <div class="checkbox">
-                <label><input type="checkbox">Lembrar-me</label>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-dark">Entrar</button>
+            <div class="form-group">
+                <label for="tipoUsuario">Tipo de Usuário</label>
+                <select class="form-control" id="tipoUsuario">
+                    <option>Diretor Geral</option>
+                    <option>Atleta</option>
+                </select>
+            </div>
+            <div>
+                <button type="button" class="btn bg-dark text-white">Enviar</button>
+            </div>
         </form>
     </div>
 </section>
