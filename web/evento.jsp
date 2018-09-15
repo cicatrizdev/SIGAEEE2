@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">"
-    <title>SIGAEE- Cadastro</title>
+    <title>SIGAEE- Evento</title>
 </head>
 <body id="page-top">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -38,7 +38,7 @@
         <form>
             <div class="form-group">
                 <label for="titulo">Nome</label>
-                <input type="text" class="form-control" id="nome" placeholder="Insira o titulo para o evento">
+                <input type="text" class="form-control" id="titulo" placeholder="Insira o titulo para o evento">
             </div>
             <div class="form-group">
                 <label for="descricao">Descrição</label>
