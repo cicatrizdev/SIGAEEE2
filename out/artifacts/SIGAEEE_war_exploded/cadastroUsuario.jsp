@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">"
-    <title>SIGAEE- Home</title>
+    <title>SIGAEE- Cadastro</title>
 </head>
 <body id="page-top">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -17,13 +17,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.jsp">Home</a>
+                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.jsp">Home
+                    <a class="nav-link" href="cadastroUsuario.jsp">Cadastro
                         <span class="sr-only">(current)</span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cadastroUsuario.jsp">Cadastro</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="login.jsp">Login</a>
@@ -34,9 +34,31 @@
 </nav>
 <section class="py-5">
     <div class="container">
-        <h1>SIGAEE</h1>
-        <h3>Sistema de Gerenciamento de Atletas e Equipes Esportivas</h3>
-        <p>Teste</p>
+        <h1>Cadastro</h1>
+        <form>
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome" placeholder="Insira seu nome">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="exemplo@email.com">
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="tipoUsuario">Tipo de Usuário</label>
+                <select class="form-control" id="tipoUsuario">
+                    <option>Diretor Geral</option>
+                    <option>Atleta</option>
+                </select>
+            </div>
+            <div>
+                <button type="button" class="btn bg-dark text-white">Enviar</button>
+            </div>
+        </form>
     </div>
 </section>
 

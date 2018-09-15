@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cadastro.jsp">Cadastro</a>
+                    <a class="nav-link" href="cadastroUsuario.jsp">Cadastro</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="login.jsp">Login</a>
