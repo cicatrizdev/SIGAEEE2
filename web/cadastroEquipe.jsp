@@ -52,11 +52,13 @@
                         <option>exemplo 2</option>
                     </select>
                 </div>
+        </form>
             </div>
+
             <div>
                 <button type="button" class="btn bg-dark text-white">Enviar</button>
             </div>
-        </form>
+
     </div>
 
 </section>
