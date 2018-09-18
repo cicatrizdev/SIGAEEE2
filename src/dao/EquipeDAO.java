@@ -24,14 +24,13 @@ public class EquipeDAO {
             throw e;
         }
     }
-}
 
     public static void alterar(Equipe equipe) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         PreparedStatement comando = null;
         try {
             conexao = BD.getConexao();
-            String sql = "UPDATE equipe SET nome = ? WHERE id = ?"
+            String sql = "UPDATE equipe SET nome = ? WHERE id = ?";
             comando = conexao.prepareStatement(sql);
             comando.setString(1, equipe.getNome());
 
