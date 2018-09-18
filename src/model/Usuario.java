@@ -5,7 +5,7 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private Boolean tipoUsuario;
+    private String tipoUsuario;
 
     public Long getId() {
         return id;
@@ -39,11 +39,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Boolean getTipoUsuario() {
+    public String getTipoUsuario() {
         return tipoUsuario;
     }
 
-    public void setTipoUsuario(Boolean tipoUsuario) {
+    public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
 }
