@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Atleta extends Usuario{
 
+    private Long id_usuario;
     private Float peso;
     private Float altura;
     private Date dataNascimento;
@@ -30,5 +31,13 @@ public class Atleta extends Usuario{
 
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public Long getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(Long id_usuario) {
+        this.id_usuario = id_usuario;
     }
 }
