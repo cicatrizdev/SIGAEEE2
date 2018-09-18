@@ -45,7 +45,7 @@
                 <input type="email" class="form-control" id="email" placeholder="exemplo@email.com">
             </div>
             <div class="form-group">
-                <label for="senha">Senha</label>
+                <label for="password">Senha</label>
                 <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
             <div class="form-group">
