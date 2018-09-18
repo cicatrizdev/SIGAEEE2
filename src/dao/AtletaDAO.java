@@ -23,7 +23,7 @@ public class AtletaDAO {
             comando.setString(4, atleta.getSenha());
             comando.setString(5, atleta.getTipoUsuario());
 
-            String sql = "INSERT INTO atleta (peso, altura, data_nascimento) values (?,?,?)";
+            String sql2 = "INSERT INTO atleta (peso, altura, data_nascimento) values (?,?,?)";
             comando.setFloat(1, atleta.getPeso());
             comando.setFloat(2, atleta.getAltura());
             comando.setDate(3, (Date) atleta.getDataNascimento());
