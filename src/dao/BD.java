@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public abstract class BD {
 
@@ -11,10 +12,10 @@ public abstract class BD {
         Connection conexao = null;
         Class.forName("com.mysql.jdbc.Driver");
         return DriverManager.getConnection
-                ("jdbc:mysql://localhost/sca", "root", "");
+                ("jdbc:mysql://localhost/sigaee", "root", "");
     }
 
-    public static void fecharConexao(Connection conexao, Statememt comando){
+    public static void fecharConexao(Connection conexao, Statement comando){
         try {
             if (comando != null){
                 comando.close();
