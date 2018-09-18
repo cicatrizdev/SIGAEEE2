@@ -5,6 +5,7 @@ public class Equipe {
     //private ?? logo;
     //private ?? playbook;
 
+
     public String getNome() {
         return nome;
     }

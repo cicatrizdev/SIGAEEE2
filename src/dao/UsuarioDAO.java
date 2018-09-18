@@ -1,17 +1,26 @@
+import dao.BD;
+import model.Usuario;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+
 public class UsuarioDAO{
 
-    public static void inserir(Usuario usuario) throws SQLException, classNotFoundExceptio {
+    public static void inserir(Usuario usuario) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
-        PreparedStatemet comando = null;
+        PreparedStatement comando = null;
         try {
             conexao = BD.getConexao();
             String sql = "INSERT INTO usuario (id , nome, email, senha, tipoUsario) VALUES (?,?,?,?,?)";
-            comando = conexao.prepareStatemant(sql);
+            comando = conexao.prepareStatement(sql);
             comando.setLong(1, usuario.getId());
             comando.setString(2, usuario.getNome());
             comando.setString(3, usuario.getEmail());
             comando.setString(4, usuario.getSenha());
-            comando.setString(5, usuariogetTipoUsuario());
+            comando.setString(5, usuario.getTipoUsuario());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
