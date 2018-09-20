@@ -66,6 +66,31 @@ public class UsuarioDAO {
         }
     }
 
+    public static Usuario lerUsuario(long id) throws ClassNotFoundException {
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        Usuario usuario = null;
+        try {
+            conexao BD.getConexao();
+            String sql = "SELECT * FROM usuario WHERE id = ?";
+            comando = conexao.prepareStatement(sql);
+            comando.setInt(1, id);
+            ResultSet rs = comando.executeQuery(sql);
+            rs.first();
+            usuario = new Usuario(rs.getLong("id"),
+                    rs.getString("nome"),
+                    rs.getString("email"),
+                    rs.getString("senha"),
+                    rs.getString("tipoUsario"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            BD.fecharConexao(conexao, comando);
+        }
+        return usuario;
+    }
+
 
 
 }
