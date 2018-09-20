@@ -17,6 +17,7 @@ public class AtletaDAO {
             conexao = BD.getConexao();
 
             String sql = "INSERT INTO usuario (id_usuario, nome, email, senha, tipoUsuario) values(?,?,?,?,?)";
+            comando = conexao.prepareStatement(sql);
             comando.setLong(1, atleta.getId());
             comando.setString(2, atleta.getNome());
             comando.setString(3, atleta.getEmail());
@@ -24,6 +25,7 @@ public class AtletaDAO {
             comando.setString(5, atleta.getTipoUsuario());
 
             String sql2 = "INSERT INTO atleta (id_atleta, peso, altura, data_nascimento) values (?,?,?)";
+            comando = conexao.prepareStatement(sql2);
             comando.setLong(1, atleta.getId_usuario());
             comando.setFloat(2, atleta.getPeso());
             comando.setFloat(3, atleta.getAltura());

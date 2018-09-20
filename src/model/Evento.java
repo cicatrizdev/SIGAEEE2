@@ -3,6 +3,7 @@ package model;
 import java.util.Date;
 
 public class Evento {
+    private Long id_evento;
     private String nome;
     private String descricao;
     private Date data;
@@ -74,5 +75,13 @@ public class Evento {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public Long getId_evento() {
+        return id_evento;
+    }
+
+    public void setId_evento(Long id_evento) {
+        this.id_evento = id_evento;
     }
 }
