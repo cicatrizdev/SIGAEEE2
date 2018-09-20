@@ -90,7 +90,31 @@ public class UsuarioDAO {
         }
         return usuario;
     }
+    public static List<Usuario> lerTodosUsuarios() throws ClassFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        List<Usuario> usuario = new ArrayList<Usuario>();
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            String sql = "SELECT * FROM usuario";
+            ResultSet rs = comando.executeQuery(sql);
+            while (rs.next()) {
+                usuario = new Usuario(rs.getLong("id"),
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getString("senha"),
+                        rs.getString("tipoUsario"));
+                usuario.add(usuario);
+            }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            BD.fecharConexao(conexao, comando);
+        }
+        return usuario;
+    }
 
 
 }
