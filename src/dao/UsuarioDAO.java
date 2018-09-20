@@ -90,6 +90,7 @@ public class UsuarioDAO {
         }
         return usuario;
     }
+
     public static List<Usuario> lerTodosUsuarios() throws ClassFoundException {
         Connection conexao = null;
         Statement comando = null;
