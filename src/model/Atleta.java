@@ -9,6 +9,10 @@ public class Atleta extends Usuario{
     private Float altura;
     private Date dataNascimento;
 
+    public Atleta(long id_atleta, float peso, float altura, Date dataNascimento) {
+        super();
+    }
+
     public Float getPeso() {
         return peso;
     }
