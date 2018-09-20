@@ -49,4 +49,75 @@ public class UsuarioDAO {
         }
     }
 
+    public void excluir(Usuario usuario) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "DELETE FROM usuario WHERE id = ?";
+            comando = conexao.prepareStatement(sql);
+            comando.setInt(1, usuario.getId());
+            comando.execute();
+
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            BD.fecharConexao(conexao, comando);
+        }
+    }
+
+    public static Usuario lerUsuario(long id) throws ClassNotFoundException {
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        Usuario usuario = null;
+        try {
+            conexao BD.getConexao();
+            String sql = "SELECT * FROM usuario WHERE id = ?";
+            comando = conexao.prepareStatement(sql);
+            comando.setInt(1, id);
+            ResultSet rs = comando.executeQuery(sql);
+            rs.first();
+            usuario = new Usuario(rs.getLong("id"),
+                    rs.getString("nome"),
+                    rs.getString("email"),
+                    rs.getString("senha"),
+                    rs.getString("tipoUsario"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            BD.fecharConexao(conexao, comando);
+        }
+        return usuario;
+    }
+    public static List<Usuario> lerTodosUsuarios() throws ClassFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        List<Usuario> usuario = new ArrayList<Usuario>();
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            String sql = "SELECT * FROM usuario";
+            ResultSet rs = comando.executeQuery(sql);
+            while (rs.next()) {
+                usuario = new Usuario(rs.getLong("id"),
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getString("senha"),
+                        rs.getString("tipoUsario"));
+                usuario.add(usuario);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            BD.fecharConexao(conexao, comando);
+        }
+        return usuario;
+    }
+
+
 }
+
+
+
