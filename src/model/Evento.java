@@ -8,10 +8,13 @@ public class Evento {
     private String descricao;
     private Date data;
     private String logradouro;
-    private String numeroLogradouro;
-    private String cidade;
-    private String estado;
-    private String cep;
+    //private String numeroLogradouro;
+    //private String cidade;
+    //private String estado;
+    //private String cep;
+
+    public Evento(long id_evento, String nome, String descricao, java.sql.Date data, String logradouro) {
+    }
 
     public String getNome() {
         return nome;
@@ -45,7 +48,7 @@ public class Evento {
         this.logradouro = logradouro;
     }
 
-    public String getNumeroLogradouro() {
+    /* public String getNumeroLogradouro() {
         return numeroLogradouro;
     }
 
@@ -76,7 +79,7 @@ public class Evento {
     public void setCep(String cep) {
         this.cep = cep;
     }
-
+    */
     public Long getId_evento() {
         return id_evento;
     }
