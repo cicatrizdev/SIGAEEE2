@@ -49,4 +49,26 @@ public class UsuarioDAO {
         }
     }
 
+    public void excluir(Usuario usuario) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "DELETE FROM usuario WHERE id = ?";
+            comando = conexao.prepareStatement(sql);
+            comando.setInt(1, usuario.getId());
+            comando.execute();
+
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            BD.fecharConexao(conexao, comando);
+        }
+    }
+
+
+
 }
+
+
+
