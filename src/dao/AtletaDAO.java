@@ -24,9 +24,9 @@ public class AtletaDAO {
             comando.setString(4, atleta.getSenha());
             comando.setString(5, atleta.getTipoUsuario());
 
-            String sql2 = "INSERT INTO atleta (id_atleta, peso, altura, data_nascimento) values (?,?,?)";
+            String sql2 = "INSERT INTO atleta (id_atleta, peso, altura, data_nascimento) values (?,?,?,?)";
             comando = conexao.prepareStatement(sql2);
-            comando.setLong(1, atleta.getId_usuario());
+            comando.setLong(1, atleta.getId_atleta());
             comando.setFloat(2, atleta.getPeso());
             comando.setFloat(3, atleta.getAltura());
             comando.setDate(4, (Date) atleta.getDataNascimento());
@@ -58,7 +58,7 @@ public class AtletaDAO {
             comando.setFloat(1, atleta.getPeso());
             comando.setFloat(2, atleta.getAltura());
             comando.setDate(3, (Date) atleta.getDataNascimento());
-            comando.setLong(4, atleta.getId_usuario());
+            comando.setLong(4, atleta.getId_atleta());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -86,7 +86,7 @@ public class AtletaDAO {
             comando.setFloat(1, atleta.getPeso());
             comando.setFloat(2, atleta.getAltura());
             comando.setDate(3, (Date) atleta.getDataNascimento());
-            comando.setLong(4, atleta.getId_usuario());
+            comando.setLong(4, atleta.getId_atleta());
             comando.execute();
         }
         catch (SQLException e){
@@ -110,7 +110,8 @@ public class AtletaDAO {
             atleta = new Atleta(rs.getLong("id_atleta"),
                     rs.getFloat("peso"),
                     rs.getFloat("altura"),
-                    rs.getDate("dataNascimento"), null );  // VER ESSA PARTEEEEEEEEEEEEEEEE E FAZER USUARIO
+                    rs.getDate("dataNascimento")
+            );
         }
         catch(SQLException e) {
             e.printStackTrace();
@@ -125,12 +126,23 @@ public class AtletaDAO {
         Connection conexao = null;
         Statement comando = null;
         List<Atleta> atletas = new ArrayList<Atleta>();
-        try{
+        try {
             conexao = BD.getConexao();
             String sql = "SELECT * FROM atleta";
-            ResultSet(); // CONFERIR ESTA PORRA
+            ResultSet rs = comando.executeQuery(sql);
+            while (rs.next()) {
+                Atleta atleta = new Atleta(rs.getLong("id_atleta"),
+                        rs.getFloat("peso"),
+                        rs.getFloat("altura"),
+                        rs.getDate("dataNascimento")
+                );
+            }
+        } catch (SQLException e) {
 
+        } finally {
+            BD.fecharConexao(conexao, comando);
         }
+        return atletas;
     }
 
 
