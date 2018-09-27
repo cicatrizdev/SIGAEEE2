@@ -16,7 +16,7 @@ public class TipoEventoDAO {
 
             String sql = "INSERT INTO tipo_evento (id_tipo_vento, nome) VALUES (?,?)";
             comando = conexao.prepareStatement(sql);
-            comando.setLong(1, tipoEvento.getId_tipo_evento());
+            comando.setInt(1, tipoEvento.getId_tipo_evento());
             comando.setString(2, tipoEvento.getNome());
 
             comando.execute();
@@ -36,7 +36,7 @@ public class TipoEventoDAO {
             String sql = "UPDATE tipo_evento SET nome = ? WHERE id_tipo_evento = ?";
             comando = conexao.prepareStatement(sql);
             comando.setString(1, tipoEvento.getNome());
-            comando.setLong(2, tipoEvento.getId_tipo_evento());
+            comando.setInt(2, tipoEvento.getId_tipo_evento());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -53,7 +53,7 @@ public class TipoEventoDAO {
             conexao = BD.getConexao();
             String sql = "DELETE * FROM tipo_evento WHERE id_tipo_evento = ? ";
             comando = conexao.prepareStatement(sql);
-            comando.setLong(1, tipoEvento.getId_tipo_evento());
+            comando.setInt(1, tipoEvento.getId_tipo_evento());
             comando.execute();
         } catch (SQLException e) {
             throw e;
@@ -62,7 +62,7 @@ public class TipoEventoDAO {
         }
     }
 
-    public static TipoEvento lerTipoEvento(Long id_tipo_evento) throws  ClassNotFoundException {
+    public static TipoEvento lerTipoEvento(Integer id_tipo_evento) throws  ClassNotFoundException {
         Connection conexao = null;
         PreparedStatement comando = null;
         TipoEvento tipoEvento= null;
@@ -95,7 +95,7 @@ public class TipoEventoDAO {
             String sql = "SELECT * FROM tipo_evento";
             ResultSet rs = comando.executeQuery(sql);
             while (rs.next()) {
-                TipoEvento tipoEvento = new TipoEvento(rs.getLong("id_tipo_evento"),
+                TipoEvento tipoEvento = new TipoEvento(rs.getInt("id_tipo_evento"),
                         rs.getString("nome")
                 );
             }

@@ -1,8 +1,6 @@
 package dao;
 
 import model.Atleta;
-
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,7 @@ public class AtletaDAO {
 
             String sql = "INSERT INTO usuario (id_usuario, nome, email, senha, tipoUsuario) values(?,?,?,?,?)";
             comando = conexao.prepareStatement(sql);
-            comando.setLong(1, atleta.getId());
+            comando.setInt(1, atleta.getId_atleta());
             comando.setString(2, atleta.getNome());
             comando.setString(3, atleta.getEmail());
             comando.setString(4, atleta.getSenha());
@@ -26,7 +24,7 @@ public class AtletaDAO {
 
             String sql2 = "INSERT INTO atleta (id_atleta, peso, altura, data_nascimento) values (?,?,?,?)";
             comando = conexao.prepareStatement(sql2);
-            comando.setLong(1, atleta.getId_atleta());
+            comando.setInt(1, atleta.getId_atleta());
             comando.setFloat(2, atleta.getPeso());
             comando.setFloat(3, atleta.getAltura());
             comando.setDate(4, (Date) atleta.getDataNascimento());
@@ -51,14 +49,14 @@ public class AtletaDAO {
             comando.setString(2, atleta.getEmail());
             comando.setString(3, atleta.getSenha());
             comando.setString(4, atleta.getTipoUsuario());
-            comando.setLong(5, atleta.getId());
+            comando.setInt(5, atleta.getId_atleta());
 
             String sql2 = "UPDATE atleta SET peso = ?, altura = ?, data_nascimento = ? WHERE id_atleta = ?";
             comando = conexao.prepareStatement(sql2);
             comando.setFloat(1, atleta.getPeso());
             comando.setFloat(2, atleta.getAltura());
             comando.setDate(3, (Date) atleta.getDataNascimento());
-            comando.setLong(4, atleta.getId_atleta());
+            comando.setInt(4, atleta.getId_atleta());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -78,7 +76,7 @@ public class AtletaDAO {
             comando.setString(2, atleta.getEmail());
             comando.setString(3, atleta.getSenha());
             comando.setString(4, atleta.getTipoUsuario());
-            comando.setLong(5, atleta.getId());
+            comando.setInt(5, atleta.getId_atleta());
             comando.execute();
 
             String sql2 = "DELETE FROM atleta WHERE peso = ?, altura = ?, data_nascimento = ? id_atleta = ?";
@@ -86,7 +84,7 @@ public class AtletaDAO {
             comando.setFloat(1, atleta.getPeso());
             comando.setFloat(2, atleta.getAltura());
             comando.setDate(3, (Date) atleta.getDataNascimento());
-            comando.setLong(4, atleta.getId_atleta());
+            comando.setInt(4, atleta.getId_atleta());
             comando.execute();
         }
         catch (SQLException e){
@@ -96,7 +94,8 @@ public class AtletaDAO {
             BD.fecharConexao(conexao,comando);
         }
     }
-    public static Atleta lerAtleta(Long id_atleta) throws SQLException, ClassNotFoundException{
+
+    public static Atleta lerAtleta(Integer id_atleta) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         PreparedStatement comando = null;
         Atleta atleta = null;
@@ -104,10 +103,10 @@ public class AtletaDAO {
             conexao = BD.getConexao();
             String sql = "SELECT * FROM atleta WHERE id_atleta = ?";
             comando = conexao.prepareStatement(sql);
-            comando.setLong(1,id_atleta);
+            comando.setInt(1,id_atleta);
             ResultSet rs = comando.executeQuery(sql);
             rs.first();
-            atleta = new Atleta(rs.getLong("id_atleta"),
+            atleta = new Atleta(rs.getInt("id_atleta"),
                     rs.getFloat("peso"),
                     rs.getFloat("altura"),
                     rs.getDate("dataNascimento")
@@ -131,7 +130,7 @@ public class AtletaDAO {
             String sql = "SELECT * FROM atleta";
             ResultSet rs = comando.executeQuery(sql);
             while (rs.next()) {
-                Atleta atleta = new Atleta(rs.getLong("id_atleta"),
+                Atleta atleta = new Atleta(rs.getInt("id_atleta"),
                         rs.getFloat("peso"),
                         rs.getFloat("altura"),
                         rs.getDate("dataNascimento")

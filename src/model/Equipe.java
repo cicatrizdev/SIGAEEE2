@@ -1,6 +1,7 @@
 package model;
 
 public class Equipe {
+    private Integer id_equipe;
     private String nome;
     //private ?? logo;
     //private ?? playbook;

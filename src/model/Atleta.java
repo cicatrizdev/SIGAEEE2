@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class Atleta extends Usuario{
 
-    private Long id_atleta;
+    private Integer id_atleta;
     private Float peso;
     private Float altura;
     private Date dataNascimento;
 
-    public Atleta(long id_atleta, float peso, float altura, java.sql.Date dataNascimento) {
+    public Atleta(int id_atleta, float peso, float altura, java.sql.Date dataNascimento) {
         super();
     }
 
@@ -37,11 +37,11 @@ public class Atleta extends Usuario{
         this.dataNascimento = dataNascimento;
     }
 
-    public Long getId_atleta() {
+    public Integer getId_atleta() {
         return id_atleta;
     }
 
-    public void setId_atleta(Long id_atleta) {
+    public void setId_atleta(Integer id_atleta) {
         this.id_atleta = id_atleta;
     }
 }

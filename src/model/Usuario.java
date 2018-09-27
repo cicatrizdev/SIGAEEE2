@@ -1,17 +1,20 @@
 package model;
 
 public class Usuario {
-    private Long id;
+    private Integer id;
     private String nome;
     private String email;
     private String senha;
     private String tipoUsuario;
 
-    public Long getId() {
+    public Usuario(Integer id, String nome, String email, String senha, String tipoUsario) {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
