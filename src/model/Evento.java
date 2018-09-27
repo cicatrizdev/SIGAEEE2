@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 
 public class Evento {
-    private Long id_evento;
+    private Integer id_evento;
     private String nome;
     private String descricao;
     private Date data;
@@ -13,7 +13,7 @@ public class Evento {
     //private String estado;
     //private String cep;
 
-    public Evento(long id_evento, String nome, String descricao, java.sql.Date data, String logradouro) {
+    public Evento(Integer id_evento, String nome, String descricao, java.sql.Date data, String logradouro) {
     }
 
     public String getNome() {
@@ -80,11 +80,11 @@ public class Evento {
         this.cep = cep;
     }
     */
-    public Long getId_evento() {
+    public Integer getId_evento() {
         return id_evento;
     }
 
-    public void setId_evento(Long id_evento) {
+    public void setId_evento(Integer id_evento) {
         this.id_evento = id_evento;
     }
 }

@@ -17,7 +17,7 @@ public class EventoDAO {
 
             String sql = "INSERT INTO evento (id_evento, nome, descricao, data, local) VALUES (?,?,?,?,?)";
             comando = conexao.prepareStatement(sql);
-            comando.setLong(1, evento.getId_evento());
+            comando.setInt(1, evento.getId_evento());
             comando.setString(2, evento.getNome());
             comando.setString(3, evento.getDescricao());
             comando.setDate(4, (Date) evento.getData());
@@ -43,7 +43,7 @@ public class EventoDAO {
             comando.setString(2, evento.getDescricao());
             comando.setDate(3, (Date) evento.getData());
             comando.setString(4, evento.getLogradouro());
-            comando.setLong(5, evento.getId_evento());
+            comando.setInt(5, evento.getId_evento());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -81,7 +81,7 @@ public class EventoDAO {
             comando.setLong(1, id_evento);
             ResultSet rs = comando.executeQuery();
             rs.first();
-            evento = new Evento(rs.getLong("id_evento"),
+            evento = new Evento(rs.getInt("id_evento"),
                     rs.getString("nome"),
                     rs.getString("descricao"),
                     rs.getDate("data"),
@@ -105,7 +105,7 @@ public class EventoDAO {
             String sql = "SELECT * FROM evento";
             ResultSet rs = comando.executeQuery(sql);
             while (rs.next()) {
-                Evento evento = new Evento(rs.getLong("id_evento"),
+                Evento evento = new Evento(rs.getInt("id_evento"),
                         rs.getString("nome"),
                         rs.getString("descricao"),
                         rs.getDate("data"),
