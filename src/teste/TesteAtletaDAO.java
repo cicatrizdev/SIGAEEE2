@@ -9,4 +9,4 @@ public class TesteAtletaDAO {
         AtletaDAO.inserir();
     }
 }
-/*
+*/

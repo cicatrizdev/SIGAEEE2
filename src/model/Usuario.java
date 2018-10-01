@@ -1,13 +1,22 @@
 package model;
 
-public class Usuario {
+public abstract class Usuario {
     private Integer id;
     private String nome;
     private String email;
     private String senha;
-    private String tipoUsuario;
 
-    public Usuario(Integer id, String nome, String email, String senha, String tipoUsario) {
+    public Usuario(Integer id, String nome, String email, String senha){
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
+
+    public Usuario(String nome, String email, String senha){
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
     }
 
     public Integer getId() {
@@ -40,13 +49,5 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public String getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(String tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
     }
 }

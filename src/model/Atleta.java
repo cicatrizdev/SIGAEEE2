@@ -4,13 +4,34 @@ import java.util.Date;
 
 public class Atleta extends Usuario{
 
-    private Integer id_atleta;
+    private Integer id;
     private Float peso;
     private Float altura;
-    private Date dataNascimento;
+    private String dataNascimento;
 
-    public Atleta(int id_atleta, float peso, float altura, java.sql.Date dataNascimento) {
-        super();
+    public Atleta(Integer idUsuario, String nome, String email, String senha, Integer id, Float peso, Float altura, String dataNascimento) {
+        super(idUsuario, nome, email, senha);
+        this.id = id;
+        this.peso = peso;
+        this.altura = altura;
+        this.dataNascimento = dataNascimento;
+    }
+
+    public Atleta(String nome, String email, String senha, Float peso, Float altura, String dataNascimento) {
+        super(nome, email, senha);
+        this.peso = peso;
+        this.altura = altura;
+        this.dataNascimento = dataNascimento;
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Float getPeso() {
@@ -29,19 +50,12 @@ public class Atleta extends Usuario{
         this.altura = altura;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public Integer getId_atleta() {
-        return id_atleta;
-    }
-
-    public void setId_atleta(Integer id_atleta) {
-        this.id_atleta = id_atleta;
-    }
 }

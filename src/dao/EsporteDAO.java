@@ -1,4 +1,4 @@
-package dao;
+package dao; // fazer o ler e lerTodos
 
 import model.Esporte;
 

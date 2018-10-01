@@ -42,7 +42,7 @@ public class Evento {
 
     public String getLogradouro() {
         return logradouro;
-    }
+    }  //fazer esta caralha toda
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;

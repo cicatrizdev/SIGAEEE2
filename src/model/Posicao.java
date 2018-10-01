@@ -1,11 +1,13 @@
 package model;
 
 public class Posicao {
-    private Long id_posicao;
+    private Integer id;
     private String nome;
 
-    public Posicao(long id_posicao, String nome) {
+    public Posicao(Integer id, String nome) { }
 
+    public Posicao(String nome) {
+        this.nome = nome;
     }
 
     public String getNome() {
@@ -16,11 +18,11 @@ public class Posicao {
         this.nome = nome;
     }
 
-    public Long getId_posicao() {
-        return id_posicao;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId_posicao(Long id_posicao) {
-        this.id_posicao = id_posicao;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

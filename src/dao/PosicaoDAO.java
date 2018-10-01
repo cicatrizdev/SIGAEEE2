@@ -10,13 +10,12 @@ public class PosicaoDAO {
     public static void inserir(Posicao posicao) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         PreparedStatement comando = null;
-
         try {
             conexao = BD.getConexao();
 
-            String sql = "INSERT INTO posicao (id_posicao, nome) VALUES (?,?)";
+            String sql = "INSERT INTO posicao (id, nome) VALUES (?,?)";
             comando = conexao.prepareStatement(sql);
-            comando.setLong(1, posicao.getId_posicao());
+            comando.setInt(1, posicao.getId());
             comando.setString(2, posicao.getNome());
 
             comando.execute();
@@ -29,14 +28,13 @@ public class PosicaoDAO {
     public static void alterar(Posicao posicao) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         PreparedStatement comando = null;
-
         try {
             conexao = BD.getConexao();
 
-            String sql = "UPDATE posicao SET nome = ? WHERE id_posicao = ?";
+            String sql = "UPDATE posicao SET nome = ? WHERE id = ?";
             comando = conexao.prepareStatement(sql);
             comando.setString(1, posicao.getNome());
-            comando.setLong(2, posicao.getId_posicao());
+            comando.setInt(2, posicao.getId());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -48,12 +46,12 @@ public class PosicaoDAO {
     public static void excluir(Posicao posicao) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         PreparedStatement comando = null;
-
         try {
             conexao = BD.getConexao();
-            String sql = "DELETE * FROM posicao WHERE id_posicao = ? ";
+
+            String sql = "DELETE * FROM posicao WHERE id = ? ";
             comando = conexao.prepareStatement(sql);
-            comando.setLong(1, posicao.getId_posicao());
+            comando.setInt(1, posicao.getId());
             comando.execute();
         } catch (SQLException e) {
             throw e;
@@ -62,19 +60,19 @@ public class PosicaoDAO {
         }
     }
 
-    public static Posicao lerPosicao(Long id_posicao) throws  ClassNotFoundException {
+    public static Posicao lerPosicao(Integer id) throws  ClassNotFoundException {
         Connection conexao = null;
         PreparedStatement comando = null;
         Posicao posicao = null;
 
         try {
             conexao = BD.getConexao();
-            String sql = "SELECT * FROM posicao WHERE id_posicao = ?";
+            String sql = "SELECT * FROM posicao WHERE id= ?";
             comando = conexao.prepareStatement(sql);
-            comando.setLong(1, id_posicao);
+            comando.setInt(1, id);
             ResultSet rs = comando.executeQuery();
             rs.first();
-            posicao = new Posicao(rs.getLong("id_posicao"),
+            posicao = new Posicao(rs.getInt("id"),
                     rs.getString("nome")
             );
         } catch (SQLException e) {
@@ -95,7 +93,7 @@ public class PosicaoDAO {
             String sql = "SELECT * FROM posicao";
             ResultSet rs = comando.executeQuery(sql);
             while (rs.next()) {
-                Posicao posicao = new Posicao(rs.getLong("id_posicao"),
+                Posicao posicao = new Posicao(rs.getInt("id"),
                         rs.getString("nome")
                 );
             }

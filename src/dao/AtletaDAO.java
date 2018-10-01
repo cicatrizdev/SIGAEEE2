@@ -7,32 +7,45 @@ import java.util.List;
 
 public class AtletaDAO {
 
-    public static void inserir(Atleta atleta) throws SQLException, ClassNotFoundException{
+    public static void inserir(Atleta atleta) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         PreparedStatement comando = null;
+        String sql;
 
-        try{
+
+        try {
             conexao = BD.getConexao();
 
-            String sql = "INSERT INTO usuario (id_usuario, nome, email, senha, tipoUsuario) values(?,?,?,?,?)";
+            sql = "INSERT INTO atleta (peso, altura, data_nascimento) values (?,?,?)";
             comando = conexao.prepareStatement(sql);
-            comando.setInt(1, atleta.getId_atleta());
-            comando.setString(2, atleta.getNome());
-            comando.setString(3, atleta.getEmail());
-            comando.setString(4, atleta.getSenha());
-            comando.setString(5, atleta.getTipoUsuario());
+            comando.setFloat(1, atleta.getPeso());
+            comando.setFloat(2, atleta.getAltura());
+            comando.setString(3, atleta.getDataNascimento());
 
-            String sql2 = "INSERT INTO atleta (id_atleta, peso, altura, data_nascimento) values (?,?,?,?)";
-            comando = conexao.prepareStatement(sql2);
-            comando.setInt(1, atleta.getId_atleta());
-            comando.setFloat(2, atleta.getPeso());
-            comando.setFloat(3, atleta.getAltura());
-            comando.setDate(4, (Date) atleta.getDataNascimento());
+            sql = "SELECT id FROM atleta WHERE nome = ?";
+            comando = conexao.prepareStatement(sql);
+            comando.setString(1, atleta.getNome());
+            ResultSet rs = comando.executeQuery(sql);
+            rs.first();
+            atleta.setId(rs.getInt("id"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            sql = "INSERT INTO usuario (nome, email, senha, atleta_id) values (?,?,?,?)";
+            comando = conexao.prepareStatement(sql);
+            comando.setString(1, atleta.getNome());
+            comando.setString(2, atleta.getEmail());
+            comando.setString(3, atleta.getSenha());
+            comando.setInt(4, atleta.getId());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
-        } catch (SQLException e){
+        } catch (SQLException e) {
             throw e;
+        } finally {
+            BD.fecharConexao(conexao, comando);
         }
     }
 
@@ -43,20 +56,12 @@ public class AtletaDAO {
         try{
             conexao = BD.getConexao();
 
-            String sql = "UPDATE usuario SET nome = ?,email = ?,senha = ?, tipoUsuario = ? WHERE id_usuario = ?";
+            String sql = "UPDATE atleta SET peso = ?, altura = ?, data_nascimento = ? WHERE id = ?";
             comando = conexao.prepareStatement(sql);
-            comando.setString(1, atleta.getNome());
-            comando.setString(2, atleta.getEmail());
-            comando.setString(3, atleta.getSenha());
-            comando.setString(4, atleta.getTipoUsuario());
-            comando.setInt(5, atleta.getId_atleta());
-
-            String sql2 = "UPDATE atleta SET peso = ?, altura = ?, data_nascimento = ? WHERE id_atleta = ?";
-            comando = conexao.prepareStatement(sql2);
             comando.setFloat(1, atleta.getPeso());
             comando.setFloat(2, atleta.getAltura());
-            comando.setDate(3, (Date) atleta.getDataNascimento());
-            comando.setInt(4, atleta.getId_atleta());
+            comando.setString(3, atleta.getDataNascimento());
+            comando.setInt(4, atleta.getId());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -70,21 +75,9 @@ public class AtletaDAO {
         PreparedStatement comando = null;
         try {
             conexao = BD.getConexao();
-            String sql1 = "DELETE FROM usuario WHERE nome = ?,email = ?,senha = ?, tipoUsuario = ? id_usuario = ?";
-            comando = conexao.prepareStatement(sql1);
-            comando.setString(1, atleta.getNome());
-            comando.setString(2, atleta.getEmail());
-            comando.setString(3, atleta.getSenha());
-            comando.setString(4, atleta.getTipoUsuario());
-            comando.setInt(5, atleta.getId_atleta());
-            comando.execute();
-
-            String sql2 = "DELETE FROM atleta WHERE peso = ?, altura = ?, data_nascimento = ? id_atleta = ?";
-            comando = conexao.prepareStatement(sql2);
-            comando.setFloat(1, atleta.getPeso());
-            comando.setFloat(2, atleta.getAltura());
-            comando.setDate(3, (Date) atleta.getDataNascimento());
-            comando.setInt(4, atleta.getId_atleta());
+            String sql = "DELETE FROM atleta WHERE id_atleta = ?";
+            comando = conexao.prepareStatement(sql);
+            comando.setInt(1, atleta.getId());
             comando.execute();
         }
         catch (SQLException e){
@@ -95,21 +88,25 @@ public class AtletaDAO {
         }
     }
 
-    public static Atleta lerAtleta(Integer id_atleta) throws SQLException, ClassNotFoundException {
+    public static Atleta lerAtleta(Integer id) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         PreparedStatement comando = null;
         Atleta atleta = null;
         try{
             conexao = BD.getConexao();
-            String sql = "SELECT * FROM atleta WHERE id_atleta = ?";
+            String sql = "SELECT * FROM atleta INNER JOIN usuario ON usuario.atleta_id = atleta.id WHERE id = ? ";
             comando = conexao.prepareStatement(sql);
-            comando.setInt(1,id_atleta);
+            comando.setInt(1, id);
             ResultSet rs = comando.executeQuery(sql);
             rs.first();
-            atleta = new Atleta(rs.getInt("id_atleta"),
-                    rs.getFloat("peso"),
-                    rs.getFloat("altura"),
-                    rs.getDate("dataNascimento")
+            atleta = new Atleta(rs.getInt("usuario.id"),
+                    rs.getString("usuario.nome"),
+                    rs.getString("usuario.email"),
+                    rs.getString("usuario.senha"),
+                    rs.getInt("atleta.id"),
+                    rs.getFloat("atleta.peso"),
+                    rs.getFloat("atleta.altura"),
+                    rs.getString("atleta.dataNascimento")
             );
         }
         catch(SQLException e) {
@@ -127,13 +124,17 @@ public class AtletaDAO {
         List<Atleta> atletas = new ArrayList<Atleta>();
         try {
             conexao = BD.getConexao();
-            String sql = "SELECT * FROM atleta";
+            String sql = "SELECT * FROM atleta INNER JOIN usuario ON usuario.atleta_id = atleta.id";
             ResultSet rs = comando.executeQuery(sql);
             while (rs.next()) {
-                Atleta atleta = new Atleta(rs.getInt("id_atleta"),
-                        rs.getFloat("peso"),
-                        rs.getFloat("altura"),
-                        rs.getDate("dataNascimento")
+                Atleta atleta = new Atleta(rs.getInt("usuario.id"),
+                        rs.getString("usuario.nome"),
+                        rs.getString("usuario.email"),
+                        rs.getString("usuario.senha"),
+                        rs.getInt("atleta.id"),
+                        rs.getFloat("atleta.peso"),
+                        rs.getFloat("atleta.altura"),
+                        rs.getString("atleta.dataNascimento")
                 );
             }
         } catch (SQLException e) {

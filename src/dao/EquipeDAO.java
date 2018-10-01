@@ -1,4 +1,4 @@
-package dao;
+package dao;  // fazer o excluir, ler e lerTodos
 
 import model.Equipe;
 
