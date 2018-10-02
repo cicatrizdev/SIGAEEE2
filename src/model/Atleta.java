@@ -2,36 +2,20 @@ package model;
 
 import java.util.Date;
 
-public class Atleta extends Usuario{
+public class Atleta extends Usuario {
 
-    private Integer id;
+    private Integer idAtleta;
     private Float peso;
     private Float altura;
     private String dataNascimento;
+    private Integer idUsuario;
 
-    public Atleta(Integer idUsuario, String nome, String email, String senha, Integer id, Float peso, Float altura, String dataNascimento) {
-        super(idUsuario, nome, email, senha);
-        this.id = id;
-        this.peso = peso;
-        this.altura = altura;
-        this.dataNascimento = dataNascimento;
+    public Integer getIdAtleta() {
+        return idAtleta;
     }
 
-    public Atleta(String nome, String email, String senha, Float peso, Float altura, String dataNascimento) {
-        super(nome, email, senha);
-        this.peso = peso;
-        this.altura = altura;
-        this.dataNascimento = dataNascimento;
-    }
-
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdAtleta(Integer idAtleta) {
+        this.idAtleta = idAtleta;
     }
 
     public Float getPeso() {
@@ -58,4 +42,16 @@ public class Atleta extends Usuario{
         this.dataNascimento = dataNascimento;
     }
 
+    @Override
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    @Override
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Atleta() {
+    }
 }

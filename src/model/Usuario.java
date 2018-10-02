@@ -1,30 +1,17 @@
 package model;
 
 public abstract class Usuario {
-    private Integer id;
+    private Integer idUsuario;
     private String nome;
     private String email;
     private String senha;
 
-    public Usuario(Integer id, String nome, String email, String senha){
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public Usuario(String nome, String email, String senha){
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNome() {
@@ -50,4 +37,8 @@ public abstract class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public Usuario() {
+    }
 }
+
