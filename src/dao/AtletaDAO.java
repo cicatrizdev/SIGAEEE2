@@ -12,9 +12,26 @@ public class AtletaDAO {
         PreparedStatement comando = null;
         String sql;
 
+        try {
+
+            Long id = 0L;
+            sql = "INSERT INTO usuario (nome, email, senha, tipoUsuario) values (?,?,?,?)";
+            comando = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            comando.setString(1, atleta.getNome());
+            comando.setString(2, atleta.getEmail());
+            comando.setString(3, atleta.getSenha());
+            comando.setString(4, atleta.getIdUsuario());
+            comando.execute();
+            BD.fecharConexao(conexao, comando);
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            BD.fecharConexao(conexao, comando);
+        }
 
         try {
             conexao = BD.getConexao();
+
 
             sql = "INSERT INTO atleta (peso, altura, data_nascimento) values (?,?,?)";
             comando = conexao.prepareStatement(sql);
@@ -32,21 +49,6 @@ public class AtletaDAO {
             e.printStackTrace();
         }
 
-        try {
-            sql = "INSERT INTO usuario (nome, email, senha, atleta_id) values (?,?,?,?)";
-            comando = conexao.prepareStatement(sql);
-            comando.setString(1, atleta.getNome());
-            comando.setString(2, atleta.getEmail());
-            comando.setString(3, atleta.getSenha());
-            comando.setInt(4, atleta.getId());
-
-            comando.execute();
-            BD.fecharConexao(conexao, comando);
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            BD.fecharConexao(conexao, comando);
-        }
     }
 
     public static void alterar (Atleta atleta) throws  SQLException, ClassNotFoundException{
