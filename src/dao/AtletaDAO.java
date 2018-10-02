@@ -27,7 +27,7 @@ public class AtletaDAO {
             comando.setString(1, atleta.getNome());
             ResultSet rs = comando.executeQuery(sql);
             rs.first();
-            atleta.setId(rs.getInt("id"));
+            atleta.setIdAtleta(rs.getInt("id"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -38,7 +38,7 @@ public class AtletaDAO {
             comando.setString(1, atleta.getNome());
             comando.setString(2, atleta.getEmail());
             comando.setString(3, atleta.getSenha());
-            comando.setInt(4, atleta.getId());
+            comando.setInt(4, atleta.getIdAtleta());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -61,7 +61,7 @@ public class AtletaDAO {
             comando.setFloat(1, atleta.getPeso());
             comando.setFloat(2, atleta.getAltura());
             comando.setString(3, atleta.getDataNascimento());
-            comando.setInt(4, atleta.getId());
+            comando.setInt(4, atleta.getIdAtleta());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -77,7 +77,7 @@ public class AtletaDAO {
             conexao = BD.getConexao();
             String sql = "DELETE FROM atleta WHERE id_atleta = ?";
             comando = conexao.prepareStatement(sql);
-            comando.setInt(1, atleta.getId());
+            comando.setInt(1, atleta.getIdAtleta());
             comando.execute();
         }
         catch (SQLException e){
