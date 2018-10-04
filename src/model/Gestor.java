@@ -1,24 +1,19 @@
 package model;
 
 public class Gestor extends Usuario {
-    private Integer id;
+    private Integer idGestor;
 
-    public Gestor(Integer idUsuario, String nome, String email, String senha, Integer id){
+
+    public Gestor(Integer idUsuario, String nome, String email, String senha, Integer idGestor){
         super(idUsuario, nome, email, senha);
-        this.id = id;
+        this.idGestor = idGestor;
     }
 
-    public Gestor(String nome, String email, String senha){
-        super(nome, email, senha);
+    public Integer getIdGestor() {
+        return idGestor;
     }
 
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idGestor) {
+        this.idGestor = idGestor;
     }
 }

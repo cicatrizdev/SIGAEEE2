@@ -12,6 +12,21 @@ public class AtletaDAO {
         PreparedStatement comando = null;
         String sql;
 
+        try {
+            sql = "INSERT INTO usuario (nome, email, senha, atleta_id) values (?,?,?,?)";
+            comando = conexao.prepareStatement(sql);
+            comando.setString(1, atleta.getNome());
+            comando.setString(2, atleta.getEmail());
+            comando.setString(3, atleta.getSenha());
+            comando.setInt(4, atleta.getIdAtleta());
+
+            comando.execute();
+            BD.fecharConexao(conexao, comando);
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            BD.fecharConexao(conexao, comando);
+        }
 
         try {
             conexao = BD.getConexao();
@@ -30,22 +45,6 @@ public class AtletaDAO {
             atleta.setIdAtleta(rs.getInt("id"));
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-
-        try {
-            sql = "INSERT INTO usuario (nome, email, senha, atleta_id) values (?,?,?,?)";
-            comando = conexao.prepareStatement(sql);
-            comando.setString(1, atleta.getNome());
-            comando.setString(2, atleta.getEmail());
-            comando.setString(3, atleta.getSenha());
-            comando.setInt(4, atleta.getIdAtleta());
-
-            comando.execute();
-            BD.fecharConexao(conexao, comando);
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            BD.fecharConexao(conexao, comando);
         }
     }
 
@@ -94,19 +93,19 @@ public class AtletaDAO {
         Atleta atleta = null;
         try{
             conexao = BD.getConexao();
-            String sql = "SELECT * FROM atleta INNER JOIN usuario ON usuario.atleta_id = atleta.id WHERE id = ? ";
+            String sql = "SELECT * FROM atleta RIGHT JOIN usuario ON usuario.atleta_id = atleta.id WHERE id = ? ";
             comando = conexao.prepareStatement(sql);
             comando.setInt(1, id);
             ResultSet rs = comando.executeQuery(sql);
             rs.first();
-            atleta = new Atleta(rs.getInt("usuario.id"),
-                    rs.getString("usuario.nome"),
-                    rs.getString("usuario.email"),
-                    rs.getString("usuario.senha"),
-                    rs.getInt("atleta.id"),
-                    rs.getFloat("atleta.peso"),
-                    rs.getFloat("atleta.altura"),
-                    rs.getString("atleta.dataNascimento")
+            atleta = new Atleta(rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getString("email"),
+                    rs.getString("senha"),
+                    rs.getInt("idAtleta"),
+                    rs.getFloat("peso"),
+                    rs.getFloat("altura"),
+                    rs.getString("dataNascimento")
             );
         }
         catch(SQLException e) {
@@ -124,17 +123,17 @@ public class AtletaDAO {
         List<Atleta> atletas = new ArrayList<Atleta>();
         try {
             conexao = BD.getConexao();
-            String sql = "SELECT * FROM atleta INNER JOIN usuario ON usuario.atleta_id = atleta.id";
+            String sql = "SELECT * FROM atleta RIGHT JOIN usuario ON usuario.atleta_id = atleta.id";
             ResultSet rs = comando.executeQuery(sql);
             while (rs.next()) {
-                Atleta atleta = new Atleta(rs.getInt("usuario.id"),
-                        rs.getString("usuario.nome"),
-                        rs.getString("usuario.email"),
-                        rs.getString("usuario.senha"),
-                        rs.getInt("atleta.id"),
-                        rs.getFloat("atleta.peso"),
-                        rs.getFloat("atleta.altura"),
-                        rs.getString("atleta.dataNascimento")
+                Atleta atleta = new Atleta(rs.getInt("idUsuario"),
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getString("senha"),
+                        rs.getInt("idAtleta"),
+                        rs.getFloat("peso"),
+                        rs.getFloat("altura"),
+                        rs.getString("dataNascimento")
                 );
             }
         } catch (SQLException e) {

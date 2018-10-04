@@ -8,6 +8,14 @@ public class Atleta extends Usuario {
     private String dataNascimento;
     private Integer idUsuario;
 
+    public Atleta(Integer idUsuario, String nome, String email, String senha, Integer idAtleta, Float peso, Float altura, String dataNascimento) {
+        super(idUsuario, nome, email, senha);
+        this.idAtleta = idAtleta;
+        this.peso = peso;
+        this.altura = altura;
+        this.dataNascimento = dataNascimento;
+    }
+
     public Integer getIdAtleta() {
         return idAtleta;
     }
@@ -48,8 +56,5 @@ public class Atleta extends Usuario {
     @Override
     public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public Atleta() {
     }
 }
