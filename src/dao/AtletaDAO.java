@@ -13,12 +13,11 @@ public class AtletaDAO {
         String sql;
 
         try {
-            sql = "INSERT INTO usuario (nome, email, senha, atleta_id) values (?,?,?,?)";
+            sql = "INSERT INTO usuario (nome, email, senha) values (?,?,?,?)";
             comando = conexao.prepareStatement(sql);
             comando.setString(1, atleta.getNome());
             comando.setString(2, atleta.getEmail());
             comando.setString(3, atleta.getSenha());
-            comando.setInt(4, atleta.getIdAtleta());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
