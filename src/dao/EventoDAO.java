@@ -15,13 +15,13 @@ public class EventoDAO {
         try {
             conexao = BD.getConexao();
 
-            String sql = "INSERT INTO evento (id_evento, nome, descricao, data, local) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO evento (id, nome, descricao, data, local) VALUES (?,?,?,?,?)";
             comando = conexao.prepareStatement(sql);
             comando.setInt(1, evento.getIdEvento());
-            comando.setString(2, evento.getNome());
-            comando.setString(3, evento.getDescricao());
-            comando.setString(4, evento.getData());
-            comando.setString(5, evento.getLogradouro());
+            comando.setString(2, evento.getNomeEvento());
+            comando.setString(3, evento.getDescricaoEvento());
+            comando.setString(4, evento.getDataEvento());
+            comando.setString(5, evento.getLogradouroEvento());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -37,12 +37,12 @@ public class EventoDAO {
         try {
             conexao = BD.getConexao();
 
-            String sql = "UPDATE evento SET nome = ?, descricao = ?, data = ?, local = ? WHERE id_evento = ? ";
+            String sql = "UPDATE evento SET nome = ?, descricao = ?, data = ?, local = ? WHERE id = ? ";
             comando = conexao.prepareStatement(sql);
-            comando.setString(1, evento.getNome());
-            comando.setString(2, evento.getDescricao());
-            comando.setDate(3,  evento.getData());
-            comando.setString(4, evento.getLogradouro());
+            comando.setString(1, evento.getNomeEvento());
+            comando.setString(2, evento.getDescricaoEvento());
+            comando.setString(3,  evento.getDataEvento());
+            comando.setString(4, evento.getLogradouroEvento());
             comando.setInt(5, evento.getIdEvento());
 
             comando.execute();
@@ -58,9 +58,9 @@ public class EventoDAO {
 
         try {
             conexao = BD.getConexao();
-            String sql = "DELETE FROM evento where id_evento = ?";
+            String sql = "DELETE FROM evento where id = ?";
             comando = conexao.prepareStatement(sql);
-            comando.setLong(1, evento.getIdEvento());
+            comando.setInt(1, evento.getIdEvento());
             comando.execute();
         } catch (SQLException e) {
             throw e;
@@ -69,19 +69,21 @@ public class EventoDAO {
         }
     }
 
-    public static Evento lerEvento(Long id_evento) throws ClassNotFoundException {
+    public static Evento lerEvento(Integer idEvento) throws ClassNotFoundException {
         Connection conexao = null;
         PreparedStatement comando = null;
         Evento evento = null;
 
         try {
             conexao = BD.getConexao();
-            String sql = "SELECT * FROM evento WHERE id_evento = ?";
+            String sql = "SELECT * FROM evento WHERE id = ?";
             comando = conexao.prepareStatement(sql);
-            comando.setLong(1, id_evento);
+            comando.setInt(1, idEvento);
             ResultSet rs = comando.executeQuery();
             rs.first();
-            evento = new Evento(rs.getInt("id_evento"),
+            evento = new Evento(rs.getInt("tipo_evento_id"),  // ta certo isso aqui??
+                    rs.getString(rs.getString("tipo_evento_nome")),
+                    rs.getInt(rs.getInt("id")),
                     rs.getString("nome"),
                     rs.getString("descricao"),
                     rs.getString("data"),
@@ -105,7 +107,9 @@ public class EventoDAO {
             String sql = "SELECT * FROM evento";
             ResultSet rs = comando.executeQuery(sql);
             while (rs.next()) {
-                Evento evento = new Evento(rs.getInt("id_evento"),
+                Evento evento = new Evento(rs.getInt("tipo_evento_id"), // ta certo isso aqui??
+                        rs.getString(rs.getString("tipo_evento_nome")),
+                        rs.getInt(rs.getInt("id")),
                         rs.getString("nome"),
                         rs.getString("descricao"),
                         rs.getString("data"),
@@ -120,3 +124,6 @@ public class EventoDAO {
         return eventos;
     }
 }
+
+
+//ESSE METODOS LER ESTAO CERTOS?? DAFUQ

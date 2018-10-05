@@ -15,8 +15,8 @@ public class PosicaoDAO {
 
             String sql = "INSERT INTO posicao (id, nome) VALUES (?,?)";
             comando = conexao.prepareStatement(sql);
-            comando.setInt(1, posicao.getId());
-            comando.setString(2, posicao.getNome());
+            comando.setInt(1, posicao.getIdPosicao());
+            comando.setString(2, posicao.getNomePosicao());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -33,8 +33,8 @@ public class PosicaoDAO {
 
             String sql = "UPDATE posicao SET nome = ? WHERE id = ?";
             comando = conexao.prepareStatement(sql);
-            comando.setString(1, posicao.getNome());
-            comando.setInt(2, posicao.getId());
+            comando.setString(1, posicao.getNomePosicao());
+            comando.setInt(2, posicao.getIdPosicao());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -51,7 +51,7 @@ public class PosicaoDAO {
 
             String sql = "DELETE * FROM posicao WHERE id = ? ";
             comando = conexao.prepareStatement(sql);
-            comando.setInt(1, posicao.getId());
+            comando.setInt(1, posicao.getIdPosicao());
             comando.execute();
         } catch (SQLException e) {
             throw e;
@@ -72,7 +72,9 @@ public class PosicaoDAO {
             comando.setInt(1, id);
             ResultSet rs = comando.executeQuery();
             rs.first();
-            posicao = new Posicao(rs.getInt("id"),
+            posicao = new Posicao(rs.getInt("esporte_id"),
+                    rs.getString("esporte_nome"),
+                    rs.getInt("id"),
                     rs.getString("nome")
             );
         } catch (SQLException e) {
@@ -93,7 +95,9 @@ public class PosicaoDAO {
             String sql = "SELECT * FROM posicao";
             ResultSet rs = comando.executeQuery(sql);
             while (rs.next()) {
-                Posicao posicao = new Posicao(rs.getInt("id"),
+                Posicao posicao = new Posicao(rs.getInt("esporte_id"),
+                        rs.getString("esporte_nome"),
+                        rs.getInt("id"),
                         rs.getString("nome")
                 );
             }
@@ -105,3 +109,5 @@ public class PosicaoDAO {
         return posicoes;
     }
 }
+
+//MESMA COISA, ESSES METODOS INSERIR ESTAO CERTOS?

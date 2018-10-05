@@ -13,9 +13,9 @@ public class AtletaDAO {
         String sql;
 
         try {
-            sql = "INSERT INTO usuario (nome, email, senha, usuario_id) values (?,?,?,?)";
+            sql = "INSERT INTO usuario (nome, email, senha) values (?,?,?)";
             comando = conexao.prepareStatement(sql);
-            comando.setString(1, atleta.getNome());
+            comando.setString(1, atleta.getNomeUsuario());
             comando.setString(2, atleta.getEmail());
             comando.setString(3, atleta.getSenha());
 
@@ -29,15 +29,14 @@ public class AtletaDAO {
         try {
             conexao = BD.getConexao();
 
-            sql = "INSERT INTO atleta (peso, altura, data_nascimento, usuario_id) values (?,?,?,?)";
+            sql = "INSERT INTO atleta (peso, altura, data_nascimento) values (?,?,?,?)";
             comando = conexao.prepareStatement(sql);
             comando.setFloat(1, atleta.getPeso());
             comando.setFloat(2, atleta.getAltura());
             comando.setString(3, atleta.getDataNascimento());
-            comando.setInt(4, atleta.getIdUsuario());
             sql = "SELECT id FROM atleta WHERE nome = ?";
             comando = conexao.prepareStatement(sql);
-            comando.setString(1, atleta.getNome());
+            comando.setString(1, atleta.getNomeUsuario());
             ResultSet rs = comando.executeQuery(sql);
             rs.first();
             atleta.setIdAtleta(rs.getInt("id"));
@@ -72,7 +71,7 @@ public class AtletaDAO {
         PreparedStatement comando = null;
         try {
             conexao = BD.getConexao();
-            String sql = "DELETE FROM atleta WHERE id_atleta = ?";
+            String sql = "DELETE FROM atleta WHERE id_at = ?";
             comando = conexao.prepareStatement(sql);
             comando.setInt(1, atleta.getIdAtleta());
             comando.execute();

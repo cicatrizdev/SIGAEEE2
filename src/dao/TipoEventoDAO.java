@@ -14,10 +14,10 @@ public class TipoEventoDAO {
         try {
             conexao = BD.getConexao();
 
-            String sql = "INSERT INTO tipo_evento (id_tipo_vento, nome) VALUES (?,?)";
+            String sql = "INSERT INTO tipo_evento (id, nome) VALUES (?,?)";
             comando = conexao.prepareStatement(sql);
-            comando.setInt(1, tipoEvento.getId_tipo_evento());
-            comando.setString(2, tipoEvento.getNome());
+            comando.setInt(1, tipoEvento.getIdTipoEvento());
+            comando.setString(2, tipoEvento.getNomeTipoEvento());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -33,10 +33,10 @@ public class TipoEventoDAO {
         try {
             conexao = BD.getConexao();
 
-            String sql = "UPDATE tipo_evento SET nome = ? WHERE id_tipo_evento = ?";
+            String sql = "UPDATE tipo_evento SET nome = ? WHERE id = ?";
             comando = conexao.prepareStatement(sql);
-            comando.setString(1, tipoEvento.getNome());
-            comando.setInt(2, tipoEvento.getId_tipo_evento());
+            comando.setString(1, tipoEvento.getNomeTipoEvento());
+            comando.setInt(2, tipoEvento.getIdTipoEvento());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -51,9 +51,9 @@ public class TipoEventoDAO {
 
         try {
             conexao = BD.getConexao();
-            String sql = "DELETE * FROM tipo_evento WHERE id_tipo_evento = ? ";
+            String sql = "DELETE * FROM tipo_evento WHERE id = ? ";
             comando = conexao.prepareStatement(sql);
-            comando.setInt(1, tipoEvento.getId_tipo_evento());
+            comando.setInt(1, tipoEvento.getIdTipoEvento());
             comando.execute();
         } catch (SQLException e) {
             throw e;
@@ -62,19 +62,19 @@ public class TipoEventoDAO {
         }
     }
 
-    public static TipoEvento lerTipoEvento(Integer id_tipo_evento) throws  ClassNotFoundException {
+    public static TipoEvento lerTipoEvento(Integer idTipoEvento) throws  ClassNotFoundException {
         Connection conexao = null;
         PreparedStatement comando = null;
         TipoEvento tipoEvento= null;
 
         try {
             conexao = BD.getConexao();
-            String sql = "SELECT * FROM tipo_evento WHERE id_tipo_evento = ?";
+            String sql = "SELECT * FROM tipo_evento WHERE id= ?";
             comando = conexao.prepareStatement(sql);
-            comando.setLong(1, id_tipo_evento);
+            comando.setInt(1, idTipoEvento);
             ResultSet rs = comando.executeQuery();
             rs.first();
-            tipoEvento = new TipoEvento(rs.getLong("id_tipo_evento"),
+            tipoEvento = new TipoEvento(rs.getInt("id"),
                     rs.getString("nome")
             );
         } catch (SQLException e) {
@@ -95,7 +95,7 @@ public class TipoEventoDAO {
             String sql = "SELECT * FROM tipo_evento";
             ResultSet rs = comando.executeQuery(sql);
             while (rs.next()) {
-                TipoEvento tipoEvento = new TipoEvento(rs.getInt("id_tipo_evento"),
+                TipoEvento tipoEvento = new TipoEvento(rs.getInt("id"),
                         rs.getString("nome")
                 );
             }
