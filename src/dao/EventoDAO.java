@@ -17,10 +17,10 @@ public class EventoDAO {
 
             String sql = "INSERT INTO evento (id_evento, nome, descricao, data, local) VALUES (?,?,?,?,?)";
             comando = conexao.prepareStatement(sql);
-            comando.setInt(1, evento.getId_evento());
+            comando.setInt(1, evento.getIdEvento());
             comando.setString(2, evento.getNome());
             comando.setString(3, evento.getDescricao());
-            comando.setDate(4, (Date) evento.getData());
+            comando.setString(4, evento.getData());
             comando.setString(5, evento.getLogradouro());
 
             comando.execute();
@@ -41,9 +41,9 @@ public class EventoDAO {
             comando = conexao.prepareStatement(sql);
             comando.setString(1, evento.getNome());
             comando.setString(2, evento.getDescricao());
-            comando.setDate(3, (Date) evento.getData());
+            comando.setDate(3,  evento.getData());
             comando.setString(4, evento.getLogradouro());
-            comando.setInt(5, evento.getId_evento());
+            comando.setInt(5, evento.getIdEvento());
 
             comando.execute();
             BD.fecharConexao(conexao, comando);
@@ -60,7 +60,7 @@ public class EventoDAO {
             conexao = BD.getConexao();
             String sql = "DELETE FROM evento where id_evento = ?";
             comando = conexao.prepareStatement(sql);
-            comando.setLong(1, evento.getId_evento());
+            comando.setLong(1, evento.getIdEvento());
             comando.execute();
         } catch (SQLException e) {
             throw e;
@@ -84,7 +84,7 @@ public class EventoDAO {
             evento = new Evento(rs.getInt("id_evento"),
                     rs.getString("nome"),
                     rs.getString("descricao"),
-                    rs.getDate("data"),
+                    rs.getString("data"),
                     rs.getString("logradouro")
             );
         } catch (SQLException e) {
@@ -108,7 +108,7 @@ public class EventoDAO {
                 Evento evento = new Evento(rs.getInt("id_evento"),
                         rs.getString("nome"),
                         rs.getString("descricao"),
-                        rs.getDate("data"),
+                        rs.getString("data"),
                         rs.getString("logradouro")
                 );
             }

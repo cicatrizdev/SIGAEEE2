@@ -4,8 +4,8 @@ public class Gestor extends Usuario {
     private Integer idGestor;
 
 
-    public Gestor(Integer idUsuario, String nome, String email, String senha, Integer idGestor){
-        super(idUsuario, nome, email, senha);
+    public Gestor(Integer idUsuario, String nomeUsuario, String email, String senha, Integer idGestor){
+        super(idUsuario, nomeUsuario, email, senha);
         this.idGestor = idGestor;
     }
 

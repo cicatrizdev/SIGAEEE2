@@ -1,22 +1,27 @@
 package model;
 
-public class Esporte {
-    private Long id_esporte;
-    private String nome;
+public abstract class Esporte {
+    private Integer idEsporte;
+    private String nomeEsporte;
 
-    public String getNome() {
-        return nome;
+    public Esporte(Integer idEsporte, String nomeEsporte) {
+        this.idEsporte = idEsporte;
+        this.nomeEsporte = nomeEsporte;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public Integer getIdEsporte() {
+        return idEsporte;
     }
 
-    public Long getId_esporte() {
-        return id_esporte;
+    public void setIdEsporte(Integer idEsporte) {
+        this.idEsporte = idEsporte;
     }
 
-    public void setId_esporte(Long id_esporte) {
-        this.id_esporte = id_esporte;
+    public String getNomeEsporte() {
+        return nomeEsporte;
+    }
+
+    public void setNomeEsporte(String nomeEsporte) {
+        this.nomeEsporte = nomeEsporte;
     }
 }

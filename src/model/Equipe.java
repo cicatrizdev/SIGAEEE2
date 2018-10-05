@@ -1,17 +1,28 @@
 package model;
 
-public class Equipe {
-    private Integer id_equipe;
-    private String nome;
-    //private ?? logo;
-    //private ?? playbook;
+public class Equipe extends Esporte {
+    private Integer idEquipe;
+    private String nomeEquipe;
 
-
-    public String getNome() {
-        return nome;
+    public Equipe(Integer idEsporte, String nomeEsporte, Integer idEquipe, String nomeEquipe) {
+        super(idEsporte, nomeEsporte);
+        this.idEquipe = idEquipe;
+        this.nomeEquipe = nomeEquipe;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public Integer getIdEquipe() {
+        return idEquipe;
+    }
+
+    public void setIdEquipe(Integer idEquipe) {
+        this.idEquipe = idEquipe;
+    }
+
+    public String getNomeEquipe() {
+        return nomeEquipe;
+    }
+
+    public void setNomeEquipe(String nomeEquipe) {
+        this.nomeEquipe = nomeEquipe;
     }
 }

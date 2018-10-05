@@ -1,26 +1,27 @@
 package model;
 
-public class TipoEvento {
-    private Integer id_tipo_evento;
-    private String nome;
+public abstract class TipoEvento {
+    private Integer idTipoEvento;
+    private String nomeTipoEvento;
 
-    public TipoEvento(long id_tipo_evento, String nome) {
-
+    public TipoEvento(Integer idTipoEvento, String nomeTipoEvento) {
+        this.idTipoEvento = idTipoEvento;
+        this.nomeTipoEvento = nomeTipoEvento;
     }
 
-    public String getNome() {
-        return nome;
+    public Integer getIdTipoEvento() {
+        return idTipoEvento;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setIdTipoEvento(Integer idTipoEvento) {
+        this.idTipoEvento = idTipoEvento;
     }
 
-    public Integer getId_tipo_evento() {
-        return id_tipo_evento;
+    public String getNomeTipoEvento() {
+        return nomeTipoEvento;
     }
 
-    public void setId_tipo_evento(Integer id_tipo_evento) {
-        this.id_tipo_evento = id_tipo_evento;
+    public void setNomeTipoEvento(String nomeTipoEvento) {
+        this.nomeTipoEvento = nomeTipoEvento;
     }
 }

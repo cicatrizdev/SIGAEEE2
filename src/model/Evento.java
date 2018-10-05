@@ -1,90 +1,60 @@
 package model;
 
-import java.util.Date;
 
-public class Evento {
-    private Integer id_evento;
-    private String nome;
-    private String descricao;
-    private Date data;
-    private String logradouro;
-    //private String numeroLogradouro;
-    //private String cidade;
-    //private String estado;
-    //private String cep;
 
-    public Evento(Integer id_evento, String nome, String descricao, java.sql.Date data, String logradouro) {
+public class Evento extends TipoEvento {
+    private Integer idEvento;
+    private String nomeEvento;
+    private String descricaoEvento;
+    private String dataEvento;
+    private String logradouroEvento;
+
+    public Evento(Integer idTipoEvento, String nomeTipoEvento, Integer idEvento, String nomeEvento, String descricaoEvento, String dataEvento, String logradouroEvento) {
+        super(idTipoEvento, nomeTipoEvento);
+        this.idEvento = idEvento;
+        this.nomeEvento = nomeEvento;
+        this.descricaoEvento = descricaoEvento;
+        this.dataEvento = dataEvento;
+        this.logradouroEvento = logradouroEvento;
     }
 
-    public String getNome() {
-        return nome;
+    public Integer getIdEvento() {
+        return idEvento;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setIdEvento(Integer idEvento) {
+        this.idEvento = idEvento;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNomeEvento() {
+        return nomeEvento;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNomeEvento(String nomeEvento) {
+        this.nomeEvento = nomeEvento;
     }
 
-    public Date getData() {
-        return data;
+    public String getDescricaoEvento() {
+        return descricaoEvento;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDescricaoEvento(String descricaoEvento) {
+        this.descricaoEvento = descricaoEvento;
     }
 
-    public String getLogradouro() {
-        return logradouro;
-    }  //fazer esta caralha toda
-
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+    public String getDataEvento() {
+        return dataEvento;
     }
 
-    /* public String getNumeroLogradouro() {
-        return numeroLogradouro;
+    public void setDataEvento(String dataEvento) {
+        this.dataEvento = dataEvento;
     }
 
-    public void setNumeroLogradouro(String numeroLogradouro) {
-        this.numeroLogradouro = numeroLogradouro;
+    public String getLogradouroEvento() {
+        return logradouroEvento;
     }
 
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-    */
-    public Integer getId_evento() {
-        return id_evento;
-    }
-
-    public void setId_evento(Integer id_evento) {
-        this.id_evento = id_evento;
+    public void setLogradouroEvento(String logradouroEvento) {
+        this.logradouroEvento = logradouroEvento;
     }
 }

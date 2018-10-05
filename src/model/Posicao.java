@@ -1,28 +1,28 @@
 package model;
 
-public class Posicao {
-    private Integer id;
-    private String nome;
+public abstract class Posicao extends Esporte{
+    private Integer idPosicao;
+    private String nomePosicao;
 
-    public Posicao(Integer id, String nome) { }
-
-    public Posicao(String nome) {
-        this.nome = nome;
+    public Posicao(Integer idEsporte, String nomeEsporte, Integer idPosicao, String nomePosicao) {
+        super(idEsporte, nomeEsporte);
+        this.idPosicao = idPosicao;
+        this.nomePosicao = nomePosicao;
     }
 
-    public String getNome() {
-        return nome;
+    public Integer getIdPosicao() {
+        return idPosicao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setIdPosicao(Integer idPosicao) {
+        this.idPosicao = idPosicao;
     }
 
-    public Integer getId() {
-        return id;
+    public String getNomePosicao() {
+        return nomePosicao;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setNomePosicao(String nomePosicao) {
+        this.nomePosicao = nomePosicao;
     }
 }

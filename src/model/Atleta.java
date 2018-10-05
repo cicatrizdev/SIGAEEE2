@@ -6,11 +6,9 @@ public class Atleta extends Usuario {
     private Float peso;
     private Float altura;
     private String dataNascimento;
-    private Integer idUsuario;
 
-    public Atleta(Integer idUsuario, String nome, String email, String senha, Integer idAtleta, Float peso, Float altura, String dataNascimento) {
-        super(idUsuario, nome, email, senha);
-        this.idAtleta = idAtleta;
+    public Atleta(Integer idUsuario, String nomeUsuario, String email, String senha, Float peso, Float altura, String dataNascimento) {
+        super(idUsuario, nomeUsuario, email, senha);
         this.peso = peso;
         this.altura = altura;
         this.dataNascimento = dataNascimento;
@@ -48,13 +46,4 @@ public class Atleta extends Usuario {
         this.dataNascimento = dataNascimento;
     }
 
-    @Override
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
-
-    @Override
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }
 }

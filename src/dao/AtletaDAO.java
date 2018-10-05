@@ -13,29 +13,28 @@ public class AtletaDAO {
         String sql;
 
         try {
-            sql = "INSERT INTO usuario (nome, email, senha) values (?,?,?,?)";
+            sql = "INSERT INTO usuario (nome, email, senha, usuario_id) values (?,?,?,?)";
             comando = conexao.prepareStatement(sql);
             comando.setString(1, atleta.getNome());
             comando.setString(2, atleta.getEmail());
             comando.setString(3, atleta.getSenha());
 
+
             comando.execute();
             BD.fecharConexao(conexao, comando);
         } catch (SQLException e) {
             throw e;
-        } finally {
-            BD.fecharConexao(conexao, comando);
         }
 
         try {
             conexao = BD.getConexao();
 
-            sql = "INSERT INTO atleta (peso, altura, data_nascimento) values (?,?,?)";
+            sql = "INSERT INTO atleta (peso, altura, data_nascimento, usuario_id) values (?,?,?,?)";
             comando = conexao.prepareStatement(sql);
             comando.setFloat(1, atleta.getPeso());
             comando.setFloat(2, atleta.getAltura());
             comando.setString(3, atleta.getDataNascimento());
-
+            comando.setInt(4, atleta.getIdUsuario());
             sql = "SELECT id FROM atleta WHERE nome = ?";
             comando = conexao.prepareStatement(sql);
             comando.setString(1, atleta.getNome());
@@ -101,7 +100,6 @@ public class AtletaDAO {
                     rs.getString("nome"),
                     rs.getString("email"),
                     rs.getString("senha"),
-                    rs.getInt("idAtleta"),
                     rs.getFloat("peso"),
                     rs.getFloat("altura"),
                     rs.getString("dataNascimento")
@@ -125,11 +123,10 @@ public class AtletaDAO {
             String sql = "SELECT * FROM atleta RIGHT JOIN usuario ON usuario.atleta_id = atleta.id";
             ResultSet rs = comando.executeQuery(sql);
             while (rs.next()) {
-                Atleta atleta = new Atleta(rs.getInt("idUsuario"),
+                Atleta atleta = new Atleta(rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("email"),
                         rs.getString("senha"),
-                        rs.getInt("idAtleta"),
                         rs.getFloat("peso"),
                         rs.getFloat("altura"),
                         rs.getString("dataNascimento")
