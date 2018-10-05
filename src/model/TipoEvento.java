@@ -1,6 +1,6 @@
 package model;
 
-public abstract class TipoEvento {
+public class TipoEvento {
     private Integer idTipoEvento;
     private String nomeTipoEvento;
 

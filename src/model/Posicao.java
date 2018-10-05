@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Posicao extends Esporte{
+public class Posicao extends Esporte{
     private Integer idPosicao;
     private String nomePosicao;
 

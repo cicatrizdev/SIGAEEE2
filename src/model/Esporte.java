@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Esporte {
+public class Esporte {
     private Integer idEsporte;
     private String nomeEsporte;
 
