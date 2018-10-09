@@ -1,5 +1,9 @@
 package model;
 
+import dao.AtletaDAO;
+
+import java.sql.SQLException;
+
 public class Atleta extends Usuario {
 
     private Integer idAtleta;
@@ -44,6 +48,22 @@ public class Atleta extends Usuario {
 
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public void inserir() throws SQLException, ClassNotFoundException {
+        AtletaDAO.inserir(this);
+    }
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        AtletaDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        AtletaDAO.excluir(this);
+    }
+
+    public static Atleta lerAtleta(int idAtleta) throws SQLException, ClassNotFoundException {
+        return AtletaDAO.lerAtleta();
     }
 
 }
