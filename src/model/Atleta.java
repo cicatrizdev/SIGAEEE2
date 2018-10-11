@@ -3,6 +3,7 @@ package model;
 import dao.AtletaDAO;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Atleta extends Usuario {
 
@@ -62,8 +63,11 @@ public class Atleta extends Usuario {
         AtletaDAO.excluir(this);
     }
 
-    //public static Atleta lerAtleta(int idAtleta) throws SQLException, ClassNotFoundException {
-    //    return AtletaDAO.lerAtleta();
-    //}
+    public static Atleta lerAtleta(int idAtleta) throws SQLException, ClassNotFoundException {
+        return AtletaDAO.lerAtleta(idAtleta);
+    }
 
+    public static List<Atleta> lerTodosAtletas() throws ClassNotFoundException, SQLException {
+        return AtletaDAO.lerTodosAtletas();
+    }
 }
