@@ -30,5 +30,40 @@
         </div>
     </div>
 </nav>
+
+<section class="py-5">
+    <div class="container">
+        <h1>Cadastro</h1>
+        <form>
+            <div class="form-group">
+       <%--@declare id="nomeequipe"--%><label for="nomeEquipe">Nome da Equipe</label>
+                <input type="text" class="form-control" id="nome" placeholder="Insira o nome da equipe">
+            </div>
+            <div class="form-group">
+                <%--@declare id="equipelogo"--%><label for="equipeLogo">Team Logo</label><br>
+                    <button type="button" class="btn">Selecionar arquivo...</button> Nenhum arquivo selecionado.
+            </div>
+            <div class="form-group">
+                <%--@declare id="escolhaesporte"--%><label for="escolhaEsporte">Selecione o esporte ...</label>
+                <div class="form-group>
+                <label for="tipoUsuario">Esporte</label>
+                    <select class="form-control" id="tipoEsporte">
+                        <option>exemplo 1</option>
+                        <option>exemplo 2</option>
+                    </select>
+                </div>
+        </form>
+            </div>
+
+            <div>
+                <button type="button" class="btn bg-dark text-white">Enviar</button>
+            </div>
+
+    </div>
+
+</section>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

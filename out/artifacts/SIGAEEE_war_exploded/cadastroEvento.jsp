@@ -47,7 +47,7 @@
                 <input type="date" class="form-control" id="data">
             </div>
             <div class="form-group">
-                <label for="tipoEvento">Tipo de Usuário</label>
+                <label for="tipoEvento">Tipo de Evento</label>
                 <select class="form-control" id="tipoEvento">
                     <option>Inserir codigo java com opções</option>
                 </select>
