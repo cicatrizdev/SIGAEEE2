@@ -10,8 +10,7 @@ import java.sql.SQLException;
 
 public class EventoMain {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        Evento evento = new Evento(2, "Competição azarada", "Campo ruim", "22/09/1998", "R dos Bobos");
-
+        Evento evento = new Evento(45, "Role", 45, "beber no mechanics", "ficar muito bebado", "Amanha", "R Alto dos Passo");
         EventoDAO.inserir(evento);
     }
 }

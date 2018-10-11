@@ -62,8 +62,8 @@ public class Atleta extends Usuario {
         AtletaDAO.excluir(this);
     }
 
-    public static Atleta lerAtleta(int idAtleta) throws SQLException, ClassNotFoundException {
-        return AtletaDAO.lerAtleta();
-    }
+    //public static Atleta lerAtleta(int idAtleta) throws SQLException, ClassNotFoundException {
+    //    return AtletaDAO.lerAtleta();
+    //}
 
 }

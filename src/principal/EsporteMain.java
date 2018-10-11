@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class EsporteMain {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        Esporte esporte = new Esporte();
+        Esporte esporte = new Esporte(1,"suing");
 
         EsporteDAO.inserir(esporte);
     }
